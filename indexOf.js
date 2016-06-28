@@ -76,3 +76,9 @@ String.prototype.indexOf=function(str){
 	}
 	return -1;
 };
+
+var str="asdf ghjkl asdf zxcv asdf qwer",sub="asd",array=[],pos=str.indexOf(sub);
+while(pos>-1){
+	array.push(pos);
+	pos=str.indexOf(sub,pos+1);
+}
