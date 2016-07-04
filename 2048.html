@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>2048</title>
+    <style type="text/css">
+    body {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background:#999;
+    }
+    
+    table {
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color:#D7D5D5;
+    }
+    
+    td {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+    
+    span {
+        color: #ff0;
+        font-size: 30px;
+    }
+    </style>
+</head>
+
+<body onkeydown="test()">
+    <table id="tab" cellspacing="8"></table>
+    <br>
+    <br>
+    <div>
+        总积分：<span id="result"></span>分
+    </div>
+</body>
+<script type="text/javascript">
+window.onload = init();
+var res = false,
+    ys = true;
+
+function getrandom(min, max) {
+    return min + Math.round((max - min) * Math.random());
+}
+
+function randomnum() {
+    var num = getrandom(1, 16);
+    if (document.getElementById(num).innerText == "") {
+        document.getElementById(num).innerText = getrandom(1, 2) * 2;
+    } else {
+        randomnum();
+    }
+}
+
+function init() {
+    var tab = document.getElementById("tab"),
+        text = "",
+        id = 1;
+    for (var i = 1; i < 5; i++) {
+        text += "<tr>";
+        for (var j = i; j <= i + 12; j += 4) {
+            text += "<td id=" + id + "></td>";
+            id++;
+        }
+        text += "</tr>"
+    }
+    tab.innerHTML = text;
+    for (var i = 0; i < 2; i++) {
+        randomnum();
+    }
+    result();
+}
+//上
+function top1() {
+    for (var i = 1; i < 5; i++) { //i列
+        ys = true;
+        for (var j = i; j <= i + 12; j += 4) {
+            for (var x = j; x > 4; x -= 4) {
+                var test1 = document.getElementById(x - 4); //上行
+                var test2 = document.getElementById(x); //下行
+                change(test1, test2);
+            }
+        }
+    }
+}
+//下
+function down1() {
+    for (var i = 1; i < 5; i++) {
+        ys = true;
+        for (var j = i + 12; j >= i; j -= 4) {
+            for (var x = j; x <= 12; x += 4) {
+                var test1 = document.getElementById(x + 4);
+                var test2 = document.getElementById(x);
+                change(test1, test2);
+            }
+        }
+    }
+}
+//左
+function left1() {
+    for (var i = 1; i <=13; i += 4) {
+        ys = true;
+        for (var j = i; j <= i + 3; j += 1) {
+            for (var x = j; x > i; x -= 1) {
+                var test1 = document.getElementById(x - 1);
+                var test2 = document.getElementById(x);
+                change(test1, test2);
+            }
+        }
+    }
+}
+//右
+function right1() {
+    for (var i = 1; i < 13; i += 4) {
+        ys = true;
+        for (var j = i + 4; j >= i; j -= 1) {
+            for (var x = j; x < i + 3; x += 1) {
+                var test1 = document.getElementById(x + 1);
+                var test2 = document.getElementById(x);
+                change(test1, test2);
+            }
+        }
+    }
+}
+
+function change(ele1, ele2) {
+    if (ele1.innerHTML == "" && ele2.innerHTML != "") {
+        res = true;
+        ele1.innerHTML = ele2.innerHTML;
+        ele2.innerHTML = "";
+    }
+    if (ele1.innerHTML != "" && ele1.innerHTML==ele2.innerHTML&& ys) {
+        ele1.innerHTML = parseInt(ele1.innerHTML) + parseInt(ele2.innerHTML);
+        ele2.innerHTML = "";
+        res = true;
+        ys = false;
+    }
+}
+
+function test() {
+    res = false;
+    if (event.keyCode == 37) left1();
+    if (event.keyCode == 38) top1();
+    if (event.keyCode == 39) right1();
+    if (event.keyCode == 40) down1();
+    if (res) randomnum();
+    result();
+}
+
+function result() {
+    var tol = 0,
+        colors = {
+            "": "#fff",
+            "2": "#D1F8F4",
+            "4": "#A0DFD9",
+            "8": "#86D2CA",
+            "16": "#5BC4B9",
+            "32": "#40ADA2",
+            "64": "#2D968B",
+            "128": "#1B897E",
+            "256": "#117369",
+            "512": "#04524B",
+            "1024": "#EDEDED",
+            "2048": "#CFCFCF",
+            "4096": "#A7A7A7"
+        };
+    for (var i = 1; i <=16; i++) {
+        var test = document.getElementById(i);
+        test.style.backgroundColor = colors[test.innerHTML];
+        if (test.innerHTML!= "") {
+            tol += parseInt(test.innerHTML) * 10;
+        }
+    }
+    document.getElementById("result").innerHTML = tol;
+}
+</script>
+
+</html>
