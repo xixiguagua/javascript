@@ -3,19 +3,20 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title>2048</title>
     <style type="text/css">
     body {
         text-align: center;
         font-size: 30px;
         font-weight: bold;
-        background:#999;
+        background: #999;
     }
     
     table {
         margin: 0 auto;
         border-radius: 10px;
-        background-color:#D7D5D5;
+        background-color: #D7D5D5;
     }
     
     td {
@@ -25,39 +26,14 @@
     }
     
     span {
-        color: #ff0;
+        color: #000;
         font-size: 30px;
     }
     </style>
 </head>
 
 <body onkeydown="test()">
-    <table id="tab" cellspacing="8">
-        <tr>
-            <td id="1"></td>
-            <td id="2"></td>
-            <td id="3"></td>
-            <td id="4"></td>
-        </tr>
-        <tr>
-            <td id="5"></td>
-            <td id="6"></td>
-            <td id="7"></td>
-            <td id="8"></td>
-        </tr>
-        <tr>
-            <td id="9"></td>
-            <td id="10"></td>
-            <td id="11"></td>
-            <td id="12"></td>
-        </tr>
-        <tr>
-            <td id="13"></td>
-            <td id="14"></td>
-            <td id="15"></td>
-            <td id="16"></td>
-        </tr>
-    </table>
+    <table id="tab" cellspacing="8"></table>
     <br>
     <br>
     <div>
@@ -68,6 +44,7 @@
 window.onload = init();
 var res = false,
     ys = true;
+
 function getrandom(min, max) {
     return min + Math.round((max - min) * Math.random());
 }
@@ -82,7 +59,19 @@ function randomnum() {
 }
 
 function init() {
-   for (var i = 0; i < 2; i++) {
+    var tab = document.getElementById("tab"),
+        text = "",
+        id = 1;
+    for (var i = 1; i < 5; i++) {
+        text += "<tr>";
+        for (var j = i; j <= i + 12; j += 4) {
+            text += "<td id=" + id + "></td>";
+            id++;
+        }
+        text += "</tr>"
+    }
+    tab.innerHTML = text;
+    for (var i = 0; i < 2; i++) {
         randomnum();
     }
     result();
@@ -115,7 +104,7 @@ function down1() {
 }
 //左
 function left1() {
-    for (var i = 1; i <=13; i += 4) {
+    for (var i = 1; i <= 13; i += 4) {
         ys = true;
         for (var j = i; j <= i + 3; j += 1) {
             for (var x = j; x > i; x -= 1) {
@@ -128,7 +117,7 @@ function left1() {
 }
 //右
 function right1() {
-    for (var i = 1; i < 13; i += 4) {
+    for (var i = 1; i <=13; i += 4) {
         ys = true;
         for (var j = i + 4; j >= i; j -= 1) {
             for (var x = j; x < i + 3; x += 1) {
@@ -146,7 +135,7 @@ function change(ele1, ele2) {
         ele1.innerHTML = ele2.innerHTML;
         ele2.innerHTML = "";
     }
-    if (ele1.innerHTML != "" && ele1.innerHTML==ele2.innerHTML&& ys) {
+    if (ele1.innerHTML != "" && ele1.innerHTML == ele2.innerHTML && ys) {
         ele1.innerHTML = parseInt(ele1.innerHTML) + parseInt(ele2.innerHTML);
         ele2.innerHTML = "";
         res = true;
@@ -160,9 +149,41 @@ function test() {
     if (event.keyCode == 38) top1();
     if (event.keyCode == 39) right1();
     if (event.keyCode == 40) down1();
+ if (res) randomnum();
+    result();
+}
+//移动端适配
+     var startx, starty, endx, endy;
+document.addEventListener("touchstart", function(event) {
+    startx = event.touches[0].pageX;
+    starty = event.touches[0].pageY;
+});
+document.addEventListener("touchend", function(event) {
+     res = false;
+    endx = event.changedTouches[0].pageX;
+    endy = event.changedTouches[0].pageY;
+    var deltx = endx - startx;
+    var delty = endy - starty;
+    if(Math.abs(deltx)<(0.1*document.body.clientWidth)&&Math.abs(delty)<(0.1*document.body.clientWidth))
+        return;
+    if (Math.abs(deltx) >= Math.abs(delty)) {
+        if (deltx > 0) {
+            right1();
+        } else {
+            left1();
+        }
+    } else {
+        if (delty > 0) {
+            down1();
+        } else {
+            top1();
+        }
+    }
     if (res) randomnum();
     result();
 }
+);
+
 
 function result() {
     var tol = 0,
@@ -181,10 +202,10 @@ function result() {
             "2048": "#CFCFCF",
             "4096": "#A7A7A7"
         };
-    for (var i = 1; i <=16; i++) {
+    for (var i = 1; i <= 16; i++) {
         var test = document.getElementById(i);
         test.style.backgroundColor = colors[test.innerHTML];
-        if (test.innerHTML!= "") {
+        if (test.innerHTML != "") {
             tol += parseInt(test.innerHTML) * 10;
         }
     }
