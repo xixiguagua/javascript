@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="formate-detection" content="telephone=no">
+    <title>card</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        font-size: 1.5625vw;
+        font-family: "Microsoft Yahei";
+    }
+    
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+/* music   */
+    .music {
+        position: fixed;
+        top: 3vh;
+        right: 4vw;
+        z-index: 5;
+        width: 15vw;
+        height: 15vw;
+        border: 4px solid #ef1639;
+        border-radius: 50%;
+        background: #fff;
+    }
+    
+    .music > img:first-of-type {
+        position: absolute;
+        top: 24%;
+        right: 2.5%;
+        width: 28.421%;
+        z-index: 1;
+    }
+    
+    .music>img:last-of-type {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 79%;
+        z-index: 0;
+    }
+    
+    .music > img.play {
+        -webkit-animation: music_disc 4s linear infinite;
+        animation: music_disc 4s linear infinite;
+    }
+    
+    @-webkit-keyframes music_disc {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes music_disc {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+   /* page  */
+    .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #page2 {
+        display: none;
+        -webkit-transition: .5s;
+        transition: .5s;
+    }
+    
+    #page1 {
+        display: block;
+    }
+    
+    #page3 {
+        display: none;
+        -webkit-transition: .5s;
+        transition: .5s;
+    }
+    
+    .page >.backg {
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+    }
+    /* page1 */
+    
+    #page1 > .backg {
+        background: url("imgs/p1_bg.jpg") no-repeat center center;
+        background-size: 100%;
+    }
+    
+    #page1 > .p1_lan {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        /* background: url("imgs/p1_lan.png") no-repeat center center;
+        background-size: 100%;
+        width: 65vw;
+        height: 91.2vh; */
+        font-size: 3.506rem;
+        padding-top: 31vh;
+        text-align: center;
+        /* color: #000;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; */
+    }
+    
+    #page1 > .p1_lan:before {
+        content: " ";
+        z-index: -1;
+        position: absolute;
+        top: 30vh;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 10vw;
+        height: 10vw;
+        background: #DCEEF0;
+        opacity: 0.5;
+        -webkit-box-shadow: 0 0 3vw 3vw #DCEEF0;
+        box-shadow: 0 0 3vw 3vw #DCEEF0;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        animation: lantern .5s infinite alternate;
+    }
+    
+    @-webkit-keyframes lantern {
+        0% {
+            opacity: 0.5;
+            -webkit-transform: scale(0.8, 0.8);
+            transform: scale(0.8, 0.8);
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes lantern {
+        0% {
+            opacity: 0.5;
+            -webkit-transform: scale(0.8, 0.8);
+            -moz-transform: scale(0.8, 0.8);
+            -o-transform: scale(0.8, 0.8);
+            transform: scale(0.8, 0.8);
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    #page1 > .p1_mo {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 9vh;
+        margin: auto;
+        background: url("imgs/p1_imooc.png") no-repeat center center;
+        width: 37.656vw;
+        height: 18.63vh;
+        background-size: 100%;
+    }
+    
+    #page1 > .p1_word {
+        font-size: 2.134rem;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 48px;
+        text-align: center;
+        color: #231815;
+    }
+   /* page2  */
+    #page2 > .backg {
+        background-color:#FFD8D8;
+        background: url("imgs/p2_bg.jpg") no-repeat center center;
+        -webkit-background-size: 120%;
+        background-size: 120%;
+    
+    }
+    
+    #page2 > .p2_circle {
+        position: absolute;
+        top: 40vh;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("imgs/p2_circle_outer.png") no-repeat center center;
+        background-size: 100%;
+        border-radius: 50%;
+        width: 56vw;
+        height: 56vw;
+        -webkit-animation: cir_outter 1s linear 2s infinite;
+        animation: cir_outter 1s linear 2s infinite;
+    }
+    
+    @-webkit-keyframes cir_outter {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+        }
+    }
+    
+    @keyframes cir_outter {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+        }
+    }
+    
+    #page2 > .p2_circle:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("imgs/p2_circle_inner.png") no-repeat center center;
+        background-size: 100%;
+        border-radius: 50%;
+        width: 33vw;
+        height: 33vw;
+        -webkit-animation: cir_inner 1s linear infinite;
+        animation: cir_inner 1s linear infinite;
+    }
+    
+    @-webkit-keyframes cir_inner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-1080deg);
+            transform: rotate(-1080deg);
+        }
+    }
+    
+    @keyframes cir_inner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-1080deg);
+            transform: rotate(-1080deg);
+        }
+    }
+    
+    #page2 > .p2_circle:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("imgs/p2_circle_middle.png") no-repeat center center;
+        background-size: 100%;
+        border-radius: 50%;
+        width: 45vw;
+        height: 45vw;
+        -webkit-animation: cir_middle 1s linear 1s infinite;
+        animation: cir_middle 1s linear 1s infinite;
+    }
+    
+    @-webkit-keyframes cir_middle {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-720deg);
+            transform: rotate(-720deg);
+        }
+    }
+    
+    @keyframes cir_middle {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-720deg);
+            -moz-transform: rotate(-720deg);
+            -o-transform: rotate(-720deg);
+            transform: rotate(-720deg);
+        }
+    }
+    
+    /* #page2 > .p2_mo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("imgs/p2_2016.png") no-repeat center center;
+        background-size: 100%;
+        width: 16vw;
+        height: 16vw;
+    } */
+    
+    #page2.fadeout {
+        opacity: .3;
+        -webkit-transform: translate(0, -100%);
+        transform: translate(0, -100%);
+    }
+    /* page3 */
+    
+    #page3 > .backg {
+        background: url("imgs/p3_bg.jpg") no-repeat center center;
+        -webkit-background-size: 100% 100%;
+        -moz-background-size: 100%;
+        -o-background-size: 100%;
+        background-size: 100%;
+    }
+    
+    #page3 > .p3_logo {
+        position: absolute;
+        top: 17.82vh;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: url("imgs/p3_titles.png") no-repeat center center;
+        background-size: 100%;
+        width: 34vw;
+        height: 6vh;
+    }
+   /*  
+    #page3 > .p3_title {
+        position: absolute;
+        top: 21vh;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: url("imgs/p3_titles.png") no-repeat center center;
+        background-size: 100%;
+        width: 48vw;
+        height: 50vh;
+    } */
+    
+   /*  #page3 > .p3_first {
+        position: absolute;
+        top: 25vh;
+        left: 3.75vw;
+        margin: auto;
+        background: url("imgs/p3_first.png") no-repeat center center;
+        background-size: 100%;
+        width: 12vw;
+        height: 41vh;
+    }
+    
+    #page3 > .p3_second {
+        position: absolute;
+        top: 25vh;
+        right: 3.75vw;
+        margin: auto;
+        background: url("imgs/p3_second.png") no-repeat center center;
+        background-size: 100%;
+        width: 12vw;
+        height: 41vh;
+    } */
+    
+    #page3 > .p3_third {
+        position: absolute;
+        bottom: 5vh;
+        right: 0;
+        left: 0;
+        margin: auto;
+        background: url("imgs/p3_third.png") no-repeat center center;
+        background-size: 100%;
+        width: 17vw;
+        height: 17vh;
+        border-radius: 50%;
+        -webkit-animation: blessing 3s linear 1s infinite;
+        animation: blessing 3s linear 1s infinite;
+    }
+    
+    @-webkit-keyframes blessing {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+        }
+    }
+    
+    @keyframes blessing {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-360deg);
+            -moz-transform: rotate(-360deg);
+            -o-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+        }
+    }
+    
+    #page3.fadein {
+        -webkit-transform: translate(0, -100%);
+        transform: translate(0, -100%);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="music">
+        <img src="imgs/music_pointer.png" alt="">
+        <img id="music" class="play" src="imgs/music_disc.png" alt="">
+    </div>
+    <div class="page" id="page1">
+        <div class="backg"></div>
+        <div class="p1_lan">7</div>
+        <div class="p1_mo"></div>
+        <div class="p1_word">keke</div>
+    </div>
+    <div class="page" id="page2">
+        <div class="backg"></div>
+        <div class="p2_circle"></div>
+        <div class="p2_mo"></div>
+    </div>
+    <div class="page" id="page3">
+        <div class="backg"></div>
+        <div class="p3_logo"></div>
+        <div class="p3_title"></div>
+ <!--        <div class="p3_first"></div>
+        <div class="p3_second"></div> -->
+        <div class="p3_third"></div>
+    </div>
+    <audio autoplay="true">
+        <source src="Sleep Away.mp3" type="audio/mpeg" media="">
+    </audio>
+</body>
+<script type="text/javascript">
+window.onload = function() {
+    var music = document.getElementById("music");
+    var audio = document.getElementsByTagName("audio")[0];
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var page3 = document.getElementById("page3");
+    // music.onclick=function(){
+    //     if (audio.paused) {
+    //         audio.play();
+    //         this.setAttribute("class","play");
+    //         // this.style.animationPlayState="running";
+
+    //     }else{
+    //         audio.pause();
+    //         this.setAttribute("class","");
+    //          // this.style.animationPlayState="paused";
+    //     }
+    // };
+    music.addEventListener("touchstart", function(event) {
+        if (audio.paused) {
+            audio.play();
+            this.setAttribute("class", "play");
+            // this.style.animationPlayState="running";
+
+        } else {
+            audio.pause();
+            this.setAttribute("class", "");
+            // this.style.animationPlayState="paused";
+        }
+    }, true);
+    audio.addEventListener("ended", function(event) {
+        music.setAttribute("class", "")
+    }, false);
+    page1.addEventListener("touchstart", function(event) {
+        page1.style.display = "none";
+        page2.style.display = "block";
+        page3.style.display = "block";
+        page3.style.top = "100%";
+        setTimeout(function() {
+            page2.setAttribute("class", "page fadeout");
+            page3.setAttribute("class", "page fadein");
+        }, 4500);
+    }, false);
+    // console.log("网页可见区域宽：" + document.body.clientWidth);
+    // console.log("网页可见区域高：" + document.body.clientHeight);
+    // console.log("网页可见区域宽（包括边线的宽）：" + document.body.offsetWidth);
+    // console.log("网页可见区域高（包括边线的高）：" + document.body.offsetHeight);
+    // console.log("网页正文全文宽：" + document.body.scrollWidth);
+    // console.log("网页正文全文高：" + document.body.scrollHeight);
+    // console.log("网页被卷去的高：" + document.body.scrollTop);
+    // console.log("网页被卷去的左：" + document.body.scrollLeft);
+    // console.log("网页正文部分上：" + window.screenTop);
+    // console.log("网页正文部分左：" + window.screenLeft);
+    // console.log("屏幕分辨率的高：" + window.screen.height);
+    // console.log("屏幕分辨率的宽：" + window.screen.width);
+
+};
+</script>
+
+</html>
