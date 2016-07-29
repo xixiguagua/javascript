@@ -1,4 +1,4 @@
 # javascript
-2048
-crad
+2048;
+crad;
 commonfun
